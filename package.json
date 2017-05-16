@@ -1,0 +1,28 @@
+{
+  "name": "safe-file-write",
+  "version": "1.0.0",
+  "description": "Write to a file, making sure it's parent folders exist, and that if the write operation is cancelled mid-writing, it does not corrupt any possible file there previously.",
+  "main": "lib/main.js",
+  "repository": "scorchpt/safe-file-write",
+  "keywords": [
+    "fs",
+    "write",
+    "files",
+    "safe"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedro M. Silva <pemiolsi@hotmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "@types/fs-promise": "^1.0.3",
+    "@types/fs-extra": "^3.0.1"
+  },
+  "dependencies": {
+    "fs-promise": "^2.0.3",
+    "is-there": "^4.4.2",
+    "mkdirp": "^0.5.1"
+  }
+}
