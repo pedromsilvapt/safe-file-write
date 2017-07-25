@@ -1,6 +1,6 @@
 {
   "name": "safe-file-write",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Write to a file, making sure it's parent folders exist, and that if the write operation is cancelled mid-writing, it does not corrupt any possible file there previously.",
   "main": "./lib/main.js",
   "types": "./lib/main.d.ts",
