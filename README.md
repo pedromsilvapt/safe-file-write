@@ -19,3 +19,17 @@ writeFileSafe( '/path/to/file.txt', contents )
     .then( () => console.log( 'FINISHED' ) )
     .catch( error => console.error( error ) );
 ```
+
+There is also a synchronous version.
+
+```typescript
+try {
+    import { writeFileSafeSync } from 'write-file-safe';    
+    
+    writeFileSafeSync( '/path/to/file.txt', contents );
+
+    console.log( 'FINISHED' );
+} catch ( error ) {
+    error => console.error( error )
+}
+```
