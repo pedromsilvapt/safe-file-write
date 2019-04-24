@@ -91,20 +91,26 @@ export function writeFileSync ( target : string, content : string | Buffer ) : v
     fs.writeFileSync( target, content );
 }
 
-export function rename ( oldName : string, newName : string ) : void {
+export function renameSync ( oldName : string, newName : string ) : void {
     fs.moveSync( oldName, newName, { overwrite: true } );
 }
 
-export default async function safeFileWrite ( target : string, content : string | Buffer | NodeJS.ReadableStream ) : Promise<string> {
+export function rename ( oldName : string, newName : string ) : Promise<void> {
+    return fs.move( oldName, newName );
+}
+
+export async function safeFileWrite ( target : string, content : string | Buffer | NodeJS.ReadableStream ) : Promise<string> {
     await ensureDir( path.dirname( target ) );
 
     const tempTarget = await availableTempName( target );
 
     await writeFile( tempTarget, content );
 
-    await fs.remove( target );
+    if ( await fs.exists( target ) ) {
+        await fs.remove( target );
+    }
 
-    rename( tempTarget, target );
+    await rename( tempTarget, target );
 
     return target;
 }
@@ -116,9 +122,11 @@ export function safeFileWriteSync ( target : string, content : string | Buffer )
 
     writeFile( tempTarget, content );
 
-    fs.removeSync( target );
+    if ( fs.existsSync( target ) ) {
+        fs.removeSync( target );
+    }
 
-    rename( tempTarget, target );
+    renameSync( tempTarget, target );
 
     return target;
 }
